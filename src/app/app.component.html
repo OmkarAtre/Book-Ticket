@@ -7,22 +7,22 @@
     <title>Document</title>
 </head>
 <body>
-<div *ngIf="watch==0">
+<div *ngIf="watch==0" style="text-align: center;">
 
-    <h2 style="text-align:center;">Details  Window </h2>
+    <h2>Details  Window </h2>
     <br>
 
     Name:<input type="text" [(ngModel)]="custName" placeholder="Enter Your Name"><br>
     MovieName:<input type="text" [(ngModel)]="movieName" placeholder="Enter Movie Name"><br>
     Ticket Quantity:<input type="text" [(ngModel)]="ticketReq" placeholder="Enter The Ticket Quantity"><br>
     <br>
-    <button (click)="ticket()">submit</button>
+    <button (click)="ticket()">Search Theatre</button>
     <button (click)="addTheatre()">Add Theatre</button>
 
 </div>
 <div *ngIf="watch==1">
-   <h2 style="text-align:center;">Theatre List </h2>
-<table border="1">
+   <h2  style="text-align:center" >Theatre List </h2>
+<table border="1" >
     <tr>
         <th>Sn</th>
         <th>Theatre Name</th>
@@ -39,6 +39,7 @@
         <td><button (click)="theatre(t.theatreId)">Select This</button></td>
     </tr>
 </table>
+<button (click)="cancel()">Back</button>
 </div>
 
 <div *ngIf="watch==2">
@@ -62,6 +63,7 @@
         <td> <button (click)="pay(ticket1.ticketId,ticket1.totalPrice)">Payment</button></td>
     </tr>
 </table>
+<button (click)="cancel1(ticket1.id)">Back</button>
 </div>
 <div *ngIf="watch==3">
     <h2 style="text-align:center;">Details Of Theatre </h2>

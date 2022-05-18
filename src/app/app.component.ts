@@ -42,9 +42,11 @@ export class AppComponent {
   }
 
   ticket1:Ticket;
+  theatre1:number;
 
   theatre(theatreId:number)
   {
+    this.theatre1=theatreId;
     let url="http://localhost:8081/theatre"+this.custid+"and"+theatreId
     this.http.get(url).subscribe((data:Ticket)=>
     {
@@ -105,7 +107,7 @@ export class AppComponent {
   payment()
   {
 
-    let url="http://localhost:8081/payment"+this.paymentType+"and"+this.mobileNumber+"and"+this.ticketid
+    let url="http://localhost:8081/payment"+this.paymentType+"and"+this.mobileNumber+"and"+this.ticketid+"and"+this.theatre1
     this.http.get(url).subscribe((data:Ticket)=>
     {
       this.finalTicket=data;
@@ -113,6 +115,30 @@ export class AppComponent {
     }
     )
 
+  }
+
+  cancel()
+  {
+    let url="http://localhost:8081/cancel"+this.custid
+    this.http.get(url).subscribe((data:number)=>
+    {
+      this.watch=0;
+      this.custName="";
+      this.movieName="";
+      this.ticketReq=0;
+    })
+  }
+
+  cancel1()
+  {
+    let url="http://localhost:8081/cancel"+this.custid
+    this.http.get(url).subscribe((data:number)=>
+    {
+      this.watch=0;
+      this.custName="";
+      this.movieName="";
+      this.ticketReq=0;
+    })
   }
 }
 
