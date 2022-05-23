@@ -7,6 +7,7 @@ export class Theatre {
 	movieName:String
 	seatingCapacity:number;
 	price:number
+	time1:String
 	ticket:Ticket[];
 
 

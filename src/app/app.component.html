@@ -20,31 +20,29 @@
     <button (click)="addTheatre()">Add Theatre</button>
 
 </div>
-<div *ngIf="watch==1">
-   <h2  style="text-align:center" >Theatre List </h2>
-<table border="1" >
+<div *ngIf="watch==1" style="text-align: center;">
+   <h2>Theatre List </h2>
+<table  class="center"  border="1">
     <tr>
         <th>Sn</th>
         <th>Theatre Name</th>
-        <th>Movie Name</th>
-        <th>Seating Capacity</th>
+       <th>Time</th>
         <th>Price</th>
     </tr>
     <tr *ngFor="let t of theatrelist, let i=index">
         <td>{{i+1}}</td>
         <td>{{t.theatreName}}</td>
-        <td>{{t.movieName}}</td>
-        <td>{{t.seatingCapacity}}</td>
+        <td>{{t.time1}}</td>
         <td>{{t.price}}</td>
         <td><button (click)="theatre(t.theatreId)">Select This</button></td>
     </tr>
 </table>
-<button (click)="cancel()">Back</button>
+    <button (click)="cancel()" >Back</button>
 </div>
 
-<div *ngIf="watch==2">
-<h2 style="text-align:center;">Virtual Ticket</h2>
-<table border="1">
+<div *ngIf="watch==2" style="text-align: center;">
+<h2>Virtual Ticket</h2>
+<table border="1" class="center">
     
     <tr>
         
@@ -65,38 +63,41 @@
 </table>
 <button (click)="cancel1(ticket1.id)">Back</button>
 </div>
-<div *ngIf="watch==3">
-    <h2 style="text-align:center;">Details Of Theatre </h2>
+<div *ngIf="watch==3" style="text-align: center">
+    <h2>Details Of Theatre </h2>
     <br>
 Theatre Name:<input type="text" [(ngModel)]="theatreName" placeholder="Enter Theatre Name"><br>
 MovieName:<input type="text" [(ngModel)]="movieName1" placeholder="Enter Movie Name"><br>
+Time:<input type="text" [(ngModel)]="time"><br>
 Seating Capacity:<input type="text" [(ngModel)]="seatingCapacity"><br>
 Ticket Price:<input type="text" [(ngModel)]="price"><br>
 <button (click)="addtheatre()">Add Theatre</button>
 </div>
-<div *ngIf="watch==4">
+<div *ngIf="watch==4" style="text-align: center">
 {{result}}
 </div>
 
-<div *ngIf="watch==5">
+<div *ngIf="watch==5" style="text-align: center" >
 
-    <h2 style="text-align:center;">Payment Window </h2>
+    <h2 >Payment Window </h2>
     <br>
     Payment Type:<input type="text" [(ngModel)]="paymentType" placeholder="Enter Payment Method"><br>
     Moblie Number:<input type="text" [(ngModel)]="mobileNumber" placeholder="Enter Your MobileNo"><br>
     Amount:<input value="{{totalprice1}}" disabled> <br>
     <button (click)="payment()">Confirm Payment</button>
+    <button (click)="cancel()">Back</button>
 </div>
 
-<div *ngIf="watch==6">
-<h2 style="text-align:center;">Final Ticket</h2>
-    <table border="1">
+<div *ngIf="watch==6" style="text-align: center;">
+<h2>Final Ticket</h2>
+    <table border="1" class="center">
         <tr>
             
             <th>Customer Name</th>
             <th>Theatre Name</th>
             <th>Movie Name</th>
             <th>Ticket Quantity</th>
+            <th>Time</th>
             <th>Single Ticket Price</th>
             <th>Total amount</th>
             <th>Payment Status</th>
@@ -107,6 +108,7 @@ Ticket Price:<input type="text" [(ngModel)]="price"><br>
             <td>{{finalTicket.theatreName}}</td>
             <td>{{finalTicket.movieName}}</td>
             <td>{{finalTicket.ticketReq}}</td>
+            <td>{{time2}}</td>
             <td>{{finalTicket.price}}</td>
             <td>{{finalTicket.totalPrice}}</td>
             <td>{{finalTicket.paymentstatus}}</td>

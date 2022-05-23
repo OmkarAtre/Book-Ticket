@@ -25,6 +25,7 @@ export class AppComponent {
   watch:number=0;
 
   theatrelist:Theatre[];
+  time2:String
   
   custid:number;
   ticket()
@@ -32,8 +33,20 @@ export class AppComponent {
     let url="http://localhost:8081/ticket"+this.custName+"and"+this.movieName+"and"+this.ticketReq
     this.http.get(url).subscribe((data:ThirdClass)=>
     {
+      if(data==null)
+      {
+        this.watch==0;
+        this.custName="";
+        this.movieName="";
+        this.ticketReq=0;
+      }
      this.theatrelist=data.theatre
       console.log(data.id);
+      data.theatre.forEach(element => 
+      {
+        this.time2=element.time1;
+      });
+      console.log(this.time2)
       this.custid=data.id
       this.watch=1;
     
@@ -47,7 +60,7 @@ export class AppComponent {
   theatre(theatreId:number)
   {
     this.theatre1=theatreId;
-    let url="http://localhost:8081/theatre"+this.custid+"and"+theatreId
+    let url="http://localhost:8081/ticketGeneration"+this.custid+"and"+theatreId
     this.http.get(url).subscribe((data:Ticket)=>
     {
       console.log(data);
@@ -61,6 +74,7 @@ export class AppComponent {
 
   theatreName:String
   movieName1:String
+  time:String
   seatingCapacity:number;
   price:number;
 
@@ -73,7 +87,7 @@ export class AppComponent {
 
   addtheatre()
   {
-    let url="http://localhost:8081/addtheatre"+this.theatreName+"and"+this.movieName1+"and"+this.seatingCapacity+"and"+this.price
+    let url="http://localhost:8081/addtheatre"+this.theatreName+"and"+this.movieName1+"and"+this.time+"and"+this.seatingCapacity+"and"+this.price
     this.http.get(url).subscribe((data:number)=>
     {
       console.log(data);
@@ -86,6 +100,17 @@ export class AppComponent {
        this.seatingCapacity=0;
        this.price=0;
       }
+
+      if(data==0)
+      {
+       this.result="Failure";
+       this.watch=4;
+       this.theatreName="";
+       this.movieName1="";
+       this.seatingCapacity=0;
+       this.price=0;
+      }
+      
     }
     )
   }
@@ -116,12 +141,14 @@ export class AppComponent {
     )
 
   }
-
+can:number
   cancel()
   {
     let url="http://localhost:8081/cancel"+this.custid
     this.http.get(url).subscribe((data:number)=>
     {
+      this.can=data
+      console.log(this.can);
       this.watch=0;
       this.custName="";
       this.movieName="";
